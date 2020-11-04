@@ -1,6 +1,6 @@
 const voiceCommands = {
-  fly: 'takeoff',
-  down: 'land',
+  старт: 'takeoff',
+  посадка: 'land',
 }
 
 module.exports = voiceCommands
