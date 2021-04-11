@@ -18,11 +18,14 @@
         <li>s - back</li>
       </ul>
     </section>
-    <section>
-      <h2>Voice control</h2>
-      <p>"старт" - takeoff</p>
-      <p>"посадка" - landing</p>
-    </section>
+    <canvas id="video-canvas" width="500" height="375"></canvas>
+    <script type="text/javascript" src="jsmpeg.min.js"></script>
+    <script type="text/javascript">
+      const canvas = document.getElementById('video-canvas');
+      canvas.style.width = '500px';
+      const url = 'ws://' + document.location.hostname + ':3001/stream';
+      const player = new JSMpeg.Player(url, { canvas: canvas });
+    </script>
     <div id="root"></div>
   </body>
 </html>
