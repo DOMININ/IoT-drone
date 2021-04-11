@@ -1,6 +1,7 @@
 import React from 'react';
 import socket from '../socket';
 import commands from '../commands/commands';
+import JSMpeg from '@cycjimmy/jsmpeg-player';
 
 document.addEventListener('keydown', (event) => {
   for (let key in commands) {
@@ -17,6 +18,11 @@ const sendCommand = (command) => {
 };
 
 const startStream = () => {
+  const canvas = document.getElementById('video-canvas');
+  canvas.style.width = '500px';
+  const url = 'ws://' + document.location.hostname + ':3001/stream';
+  new JSMpeg.Player(url, { canvas: canvas });
+
   socket.emit('stream', 'streamon');
 };
 
