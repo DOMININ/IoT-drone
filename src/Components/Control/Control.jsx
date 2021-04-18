@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import socket from '../../socket';
 import commands from '../../commands/commands';
 import JSMpeg from '@cycjimmy/jsmpeg-player';
@@ -9,18 +9,27 @@ const Control = () => {
   const [activeCommand, setActiveCommand] = useState('');
   const canvasElement = useRef(null);
 
-  document.addEventListener('keydown', (event) => {
+  useEffect(() => {
+    document.addEventListener('keydown', sendCommand);
+    document.addEventListener('keyup', () => {
+      setActiveCommand('');
+    });
+    return () => {
+      document.removeEventListener('keydown', sendCommand);
+      document.removeEventListener('keyup', () => {
+        setActiveCommand('');
+      });
+    };
+  }, []);
+
+  const sendCommand = (event) => {
     for (let key in commands) {
       if (event.key === key) {
         socket.emit('command', commands[key]);
         setActiveCommand(commands[key]);
       }
     }
-  });
-
-  document.addEventListener('keyup', () => {
-    setActiveCommand('');
-  });
+  };
 
   const emergencyLand = () => {
     console.log('Sending command:', 'emergency');
