@@ -1,0 +1,58 @@
+.control {
+  height: calc(100vh - 10px);
+  padding: 10px;
+  padding-bottom: 0;
+}
+
+.leftSide,
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 450px;
+}
+
+.btnControl,
+.btnControlSecondary,
+.btnControlTertiary,
+.emergency {
+  padding: 40px;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(0deg, rgba(6, 29, 58, 1), rgba(6, 29, 58, 1));
+  border: 2px solid #61a4fc;
+  border-radius: 15px;
+  color: #ffffff;
+  font-size: 24px;
+  width: 450px;
+}
+
+.btnControlSecondary {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+    rgba(27, 57, 104, 0.8);
+}
+
+.btnControlTertiary {
+  background: linear-gradient(0deg, #1d53ab, #1d53ab), #62c1fc;
+}
+
+.row1,
+.row2,
+.row3 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.canvas {
+  display: block;
+  width: 500px;
+  height: 375px;
+}
+
+.emergency {
+  margin-top: 10px;
+  width: 100%;
+  color: red;
+  border: 2px solid red;
+  background: black;
+}

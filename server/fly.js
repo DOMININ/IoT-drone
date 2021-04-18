@@ -15,12 +15,6 @@ drone.bind(PORT);
 const droneState = dgram.createSocket('udp4');
 droneState.bind(8890);
 
-// Drone status
-drone.on('message', (message) => {
-  console.log(`Drone: ${message}`);
-  io.sockets.emit('status', message.toString());
-});
-
 // stream property
 const streamServer = http_drone
   .createServer(function (request) {
@@ -70,8 +64,6 @@ const handleError = (err) => {
 drone.send('command', 0, 'command'.length, PORT, HOST, handleError);
 
 io.on('connection', (socket) => {
-  socket.emit('status', 'CONNECTED');
-
   // Control commands
   socket.on('command', (command) => {
     console.log('Command sent from browser:', command);
@@ -108,6 +100,9 @@ io.on('connection', (socket) => {
 });
 
 droneState.on('message', (state) => {
+  io.sockets.emit('status', 'CONNECTED');
+
+  // Drone state
   const formattedState = parseState(state.toString());
   io.sockets.emit('dronestate', formattedState);
 });

@@ -1,14 +1,16 @@
-import React from 'react'
-import Commands from './Components/Commands'
-import DroneState from './Components/DroneState'
+import React from 'react';
+import Commands from './Components/Control/Control';
+// import DrosneState from './Components/DroneState';
+
+import styles from './App.module.scss';
 
 function App() {
   return (
-    <div>
-      <DroneState />
+    <div className={styles.app}>
+      {/* <DroneState /> */}
       <Commands />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
