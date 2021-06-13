@@ -98,7 +98,7 @@ io.on('connection', (socket) => {
     }, 1000);
   });
 
-  socket.on('restartServer', () => {
+  socket.on('test', () => {
     process.exit(1);
   });
 });

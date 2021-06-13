@@ -72,7 +72,7 @@ const Control = () => {
   };
 
   const restartServer = () => {
-    socket.emit('restartServer');
+    socket.emit('test');
   };
 
   return (
@@ -195,7 +195,7 @@ const Control = () => {
           На координаты
         </button>
       </div>
-      <div className={styles.restart} onClick={restartServer} />
+      <button className={styles.restart} onClick={restartServer} />
     </section>
   );
 };
