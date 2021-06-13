@@ -2,21 +2,43 @@
   height: calc(100vh - 10px);
   padding: 10px;
   padding-bottom: 0;
-}
-
-.leftSide,
-.rightSide {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.left {
   width: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-height: 435px;
+}
+
+.middle {
+  position: relative;
+}
+
+.right {
+  width: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-height: 435px;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .btnControl,
 .btnControlSecondary,
-.btnControlTertiary,
 .emergency {
-  padding: 40px;
+  padding: 30px;
   cursor: pointer;
   border: none;
   background: linear-gradient(0deg, rgba(6, 29, 58, 1), rgba(6, 29, 58, 1));
@@ -24,29 +46,94 @@
   border-radius: 15px;
   color: #ffffff;
   font-size: 24px;
-  width: 450px;
+  width: 190px;
+}
+
+.btnControl {
+  &:first-child,
+  &:last-child {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 }
 
 .btnControlSecondary {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
-    rgba(27, 57, 104, 0.8);
-}
-
-.btnControlTertiary {
   background: linear-gradient(0deg, #1d53ab, #1d53ab), #62c1fc;
+
+  &:first-child,
+  &:last-child {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 }
 
-.row1,
-.row2,
-.row3 {
-  display: flex;
-  justify-content: space-between;
+.inner .btnControl,
+.inner .btnControlSecondary {
+  margin: 0;
 }
 
 .canvas {
   display: block;
   width: 500px;
   height: 375px;
+  margin-top: 60px;
+}
+
+.btnControlTakeoff,
+.btnControlLand {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-image: url('../../assets/buttonOn.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+  background-clip: content-box;
+}
+
+.btnControlTakeoff {
+  background-color: #4bb543;
+}
+
+.btnControlLand {
+  background-color: #ca0b00;
+}
+
+.btnControlStreamon,
+.btnControlStreamoff {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-image: url('../../assets/buttonStream.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+  background-clip: content-box;
+}
+
+.btnControlStreamon {
+  background-color: #4bb543;
+}
+
+.btnControlStreamoff {
+  background-image: url('../../assets/buttonStreamoff.png');
+}
+
+.wrapper {
+  display: flex;
+}
+
+.btnAdvanced {
 }
 
 .emergency {

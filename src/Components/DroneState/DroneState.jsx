@@ -1,5 +1,7 @@
-import socket from '../socket.js';
+import socket from '../../socket.js';
 import React, { useState, useEffect } from 'react';
+
+import styles from './DroneState.module.scss';
 
 const useDroneState = () => {
   const [droneState, setDroneState] = useState({});
@@ -24,8 +26,7 @@ const DroneState = () => {
   const status = useSocket();
   const droneState = useDroneState([]);
   return (
-    <section>
-      <h2>Drone</h2>
+    <section className={styles.wrapper}>
       <p>Status: {status}</p>
       <p>Charge: {droneState.bat}%</p>
     </section>

@@ -1,14 +1,14 @@
 const commands = {
-  t: 'takeoff',
-  l: 'land',
+  v: 'takeoff',
+  b: 'land',
   w: 'forward 20',
   s: 'back 20',
   d: 'right 20',
   a: 'left 20',
-  c: 'cw 20',
-  x: 'ccw 20',
-  e: 'up 20',
-  q: 'down 20',
+  l: 'cw 20',
+  j: 'ccw 20',
+  i: 'up 20',
+  k: 'down 20',
 };
 
 module.exports = commands;
