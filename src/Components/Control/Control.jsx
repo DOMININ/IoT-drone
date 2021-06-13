@@ -71,6 +71,10 @@ const Control = () => {
     socket.emit('stream', 'streamoff');
   };
 
+  const restartServer = () => {
+    socket.emit('restartServer');
+  };
+
   return (
     <section className={styles.control}>
       <div className={styles.wrapper}>
@@ -191,6 +195,7 @@ const Control = () => {
           На координаты
         </button>
       </div>
+      <div className={styles.restart} onClick={restartServer} />
     </section>
   );
 };

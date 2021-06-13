@@ -1,5 +1,6 @@
 .control {
-  height: calc(100vh - 10px);
+  position: relative;
+  height: calc(100vh - 20px);
   padding: 10px;
   padding-bottom: 0;
   display: flex;
@@ -77,6 +78,8 @@
   width: 500px;
   height: 375px;
   margin-top: 60px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .btnControlTakeoff,
@@ -142,4 +145,19 @@
   color: red;
   border: 2px solid red;
   background: black;
+}
+
+.restart {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: none;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-image: url('../../assets/buttonRestart.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
 }

@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.1.2",
     "dgram": "^1.0.1",
     "express": "^4.17.1",
+    "forever": "^4.0.1",
     "http": "0.0.1-security",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -23,7 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "nodemon server/fly"
+    "server": "forever start server/fly.js"
   },
   "eslintConfig": {
     "extends": "react-app"

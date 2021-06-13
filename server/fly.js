@@ -97,6 +97,10 @@ io.on('connection', (socket) => {
       });
     }, 1000);
   });
+
+  socket.on('restartServer', () => {
+    process.exit(1);
+  });
 });
 
 droneState.on('message', (state) => {
