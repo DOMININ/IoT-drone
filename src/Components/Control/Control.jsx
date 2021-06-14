@@ -10,6 +10,7 @@ const Control = () => {
   const [isTakedOff, setIsTakedOff] = useState(false);
   const [isStreamOn, setIsStreamOn] = useState(false);
   const [activeCommand, setActiveCommand] = useState('');
+  const [lang, setLang] = useState('RU');
   const canvasElement = useRef(null);
 
   useEffect(() => {
@@ -75,6 +76,163 @@ const Control = () => {
     socket.emit('test');
   };
 
+  const onLangChange = (event) => {
+    setLang(event.target.value);
+  };
+
+  if (lang === 'RU') {
+    return (
+      <section className={styles.control}>
+        <div className={styles.wrapper}>
+          <div className={styles.left}>
+            <button
+              style={{ background: activeCommand === 'forward 20' && '#1DE51D' }}
+              data-control="forward 20"
+              className={styles.btnControl}
+              onClick={sendButtonCommand}
+            >
+              Вперед
+            </button>
+            <div className={styles.inner}>
+              <button
+                style={{ background: activeCommand === 'left 20' && '#1DE51D' }}
+                data-control="left 20"
+                className={styles.btnControl}
+                onClick={sendButtonCommand}
+              >
+                Влево
+              </button>
+              <button
+                style={{ background: activeCommand === 'right 20' && '#1DE51D' }}
+                data-control="right 20"
+                className={styles.btnControl}
+                onClick={sendButtonCommand}
+              >
+                Вправо
+              </button>
+            </div>
+            <button
+              style={{ background: activeCommand === 'back 20' && '#1DE51D' }}
+              data-control="back 20"
+              className={styles.btnControl}
+              onClick={sendButtonCommand}
+            >
+              Назад
+            </button>
+          </div>
+
+          <div className={styles.middle}>
+            <DroneState lang={lang} />
+            <canvas
+              ref={canvasElement}
+              id="video-canvas"
+              width="500"
+              height="375"
+              className={styles.canvas}
+            />
+            {!isTakedOff ? (
+              <button
+                data-control="takeoff"
+                className={styles.btnControlTakeoff}
+                onClick={sendButtonCommand}
+              />
+            ) : (
+              <button
+                data-control="land"
+                className={styles.btnControlLand}
+                onClick={sendButtonCommand}
+              />
+            )}
+
+            {!isStreamOn ? (
+              <button onClick={startStream} className={styles.btnControlStreamon} />
+            ) : (
+              <button onClick={endStream} className={styles.btnControlStreamoff} />
+            )}
+          </div>
+
+          <div className={styles.right}>
+            <button
+              style={{ background: activeCommand === 'up 20' && '#1DE51D' }}
+              data-control="up 20"
+              className={styles.btnControlSecondary}
+              onClick={sendButtonCommand}
+            >
+              Вверх
+            </button>
+            <div className={styles.inner}>
+              <button
+                style={{ background: activeCommand === 'ccw 20' && '#1DE51D' }}
+                data-control="ccw 20"
+                className={styles.btnControlSecondary}
+                onClick={sendButtonCommand}
+              >
+                Пов. нал.
+              </button>
+              <button
+                style={{ background: activeCommand === 'cw 20' && '#1DE51D' }}
+                data-control="cw 20"
+                className={styles.btnControlSecondary}
+                onClick={sendButtonCommand}
+              >
+                Пов. напр.
+              </button>
+            </div>
+            <button
+              style={{ background: activeCommand === 'down 20' && '#1DE51D' }}
+              data-control="down 20"
+              className={styles.btnControlSecondary}
+              onClick={sendButtonCommand}
+            >
+              Вниз
+            </button>
+          </div>
+        </div>
+
+        <div className={styles.btnAdvanced}>
+          <button onClick={emergencyLand} className={styles.emergency}>
+            Экстренная посадка
+          </button>
+          <button
+            data-control="go 20 20 20 20"
+            onClick={sendButtonCommand}
+            className={styles.emergency}
+          >
+            На координаты
+          </button>
+        </div>
+        <button className={styles.restart} onClick={restartServer} />
+
+        <ul className={styles.panelList}>
+          <li className={styles.panelItem}>
+            <input
+              className={styles.panelRadio}
+              checked={lang === 'RU'}
+              type="radio"
+              id="RU"
+              name="insurance"
+              value="RU"
+              onChange={onLangChange}
+            />
+            <label htmlFor="RU">RU</label>
+          </li>
+          <li className={styles.panelItem}>
+            <input
+              className={styles.panelRadio}
+              checked={lang === 'EN'}
+              type="radio"
+              id="EN"
+              name="insurance"
+              value="EN"
+              onChange={onLangChange}
+            />
+            <label htmlFor="EN">EN</label>
+          </li>
+        </ul>
+      </section>
+    );
+  }
+
   return (
     <section className={styles.control}>
       <div className={styles.wrapper}>
@@ -116,7 +274,7 @@ const Control = () => {
         </div>
 
         <div className={styles.middle}>
-          <DroneState />
+          <DroneState lang={lang} />
           <canvas
             ref={canvasElement}
             id="video-canvas"
@@ -192,10 +350,37 @@ const Control = () => {
           onClick={sendButtonCommand}
           className={styles.emergency}
         >
-          На координаты
+          On coord
         </button>
       </div>
       <button className={styles.restart} onClick={restartServer} />
+
+      <ul className={styles.panelList}>
+        <li className={styles.panelItem}>
+          <input
+            className={styles.panelRadio}
+            checked={lang === 'RU'}
+            type="radio"
+            id="RU"
+            name="insurance"
+            value="RU"
+            onChange={onLangChange}
+          />
+          <label htmlFor="RU">RU</label>
+        </li>
+        <li className={styles.panelItem}>
+          <input
+            className={styles.panelRadio}
+            checked={lang === 'EN'}
+            type="radio"
+            id="EN"
+            name="insurance"
+            value="EN"
+            onChange={onLangChange}
+          />
+          <label htmlFor="EN">EN</label>
+        </li>
+      </ul>
     </section>
   );
 };

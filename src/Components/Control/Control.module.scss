@@ -161,3 +161,57 @@
   background-size: cover;
   background-color: transparent;
 }
+
+.panelList {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.panelItem {
+  &:first-child .panelRadio + label {
+    border-radius: 5px 0 0 5px;
+  }
+  &:last-child .panelRadio + label {
+    border-radius: 0 5px 5px 0;
+  }
+}
+
+.panelRadio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.panelRadio + label {
+  display: block;
+  padding: 5px 0 5px 0;
+  width: 45px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 24px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  color: #626262;
+}
+
+.panelRadio + label:hover {
+  color: #ed462f;
+  border-color: #ed462f;
+}
+
+.panelRadio[type='radio']:checked + label {
+  background: #ed462f;
+  border-color: #ed462f;
+  color: #fff;
+}

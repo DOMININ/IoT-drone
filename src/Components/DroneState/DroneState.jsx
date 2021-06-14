@@ -22,9 +22,20 @@ const useSocket = () => {
   return status;
 };
 
-const DroneState = () => {
+const DroneState = ({ lang }) => {
   const status = useSocket();
   const droneState = useDroneState([]);
+  console.log(lang);
+
+  if (lang === 'RU') {
+    return (
+      <section className={styles.wrapper}>
+        <p>Статус: {status === 'DISCONNECTED' ? 'ОТКЛЮЧЕН' : 'ПОДКЛЮЧЕН'}</p>
+        <p>Заряд: {droneState.bat}%</p>
+      </section>
+    );
+  }
+
   return (
     <section className={styles.wrapper}>
       <p>Status: {status}</p>
